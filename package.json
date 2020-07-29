@@ -4,6 +4,9 @@
   "description": "Simple multistep checkout app",
   "main": "index.js",
   "dependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/preset-react": "^7.10.4",
     "chai": "^4.2.0",
     "express": "^4.17.1",
     "mocha": "^8.0.1"

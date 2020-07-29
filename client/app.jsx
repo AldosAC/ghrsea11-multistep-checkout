@@ -9,6 +9,6 @@ class App extends Component {
   }
 
   render () {
-    
+    <div>React is working</div>
   }
 };
