@@ -4,7 +4,9 @@
   "description": "Simple multistep checkout app",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.17.1"
+    "chai": "^4.2.0",
+    "express": "^4.17.1",
+    "mocha": "^8.0.1"
   },
   "devDependencies": {},
   "scripts": {
