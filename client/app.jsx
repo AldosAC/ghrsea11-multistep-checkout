@@ -188,7 +188,7 @@ class BillingView extends React.Component {
 
   onSubmitHandler(event) {
     let { toNext, submitData } = this.props;
-    let submitPath = '/order/shipping';
+    let submitPath = '/order/billing';
 
     event.preventDefault();
     submitData(this.state, submitPath);
@@ -210,18 +210,40 @@ class BillingView extends React.Component {
 
     return (
       <div>
-        <h3>Shipping Information</h3>
+        <h3>Billing Information</h3>
         <form onSubmit={this.onSubmitHandler}>
-          <label>Address</label>
+          <label>Credit Card Info</label>
           <input
             type="text"
-            name="line1"
-            value={line1}
+            name="cardNum"
+            value={cardNum}
             onChange={this.onChangeHandler}
-            placeholder="Address Line 1"
+            placeholder="Enter credit card number..."
+          />
+          <input
+            type="text"
+            name="expiration"
+            value={expiration}
+            onChange={this.onChangeHandler}
+            placeholder="Exp: MO/YR"
+          />
+          <input
+            type="text"
+            name="cvv"
+            value={cvv}
+            onChange={this.onChangeHandler}
+            placeholder="CVV"
+          />
+
+          <label>Billing Zip Code</label>
+          <input
+            type="text"
+            name="zip"
+            value={zip}
+            onChange={this.onChangeHandler}
+            placeholder="Zip Code"
           />
           
-
           <button>Next</button>
 
         </form>
@@ -247,17 +269,14 @@ class App extends React.Component {
   }
 
   toShippingView(event) {
-
     this.setState({ view: "shipping" })
   }
 
   toBillingView(event) {
-    
     this.setState({ view: "billing" })
   }
 
   completeOrder(event) {
-
     this.setState({ view: "index" })
   }
 
@@ -288,10 +307,10 @@ class App extends React.Component {
       )
     } else if (view === "billing") {
       return (
-        <div>
-          <h1>Billing Information</h1>
-          <button onClick={this.completeOrder}>Place Order</button>
-        </div>
+        <BillingView 
+        toNext={this.completeOrder} 
+        submitData={this.submitData} 
+        />
       )
     }
   }
