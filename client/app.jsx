@@ -19,7 +19,7 @@ class SignUpView extends React.Component {
 
   onSubmitHandler(event) {
     let { toNext, submitData } = this.props;
-    let submitPath = '/signup';
+    let submitPath = '/order/signup';
 
     event.preventDefault();
     submitData(this.state, submitPath);
@@ -74,9 +74,159 @@ class ShippingView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      line1: '',
+      line2: '',
+      city: '',
+      state: '',
+      zip: '',
     }
 
+    this.onChangeHandler = this.onChangeHandler.bind(this);
+    this.onSubmitHandler = this.onSubmitHandler.bind(this);
+    this.resetState = this.resetState.bind(this);
+  }
+
+  onChangeHandler(event) {
+    let { name, value } = event.target;
+
+    this.setState({ [name]: value });
+  }
+
+  onSubmitHandler(event) {
+    let { toNext, submitData } = this.props;
+    let submitPath = '/order/shipping';
+
+    event.preventDefault();
+    submitData(this.state, submitPath);
+    this.resetState();
+    toNext();
+  }
+
+  resetState() {
+    this.setState({ 
+      line1: '',
+      line2: '',
+      city: '',
+      state: '',
+      zip: ''
+     });
+  }
+
+  render() {
+    let { line1, line2, city, state, zip } = this.state;
+
+    return (
+      <div>
+        <h3>Shipping Information</h3>
+        <form onSubmit={this.onSubmitHandler}>
+          <label>Address</label>
+          <input
+            type="text"
+            name="line1"
+            value={line1}
+            onChange={this.onChangeHandler}
+            placeholder="Address Line 1"
+          />
+          <input
+            type="text"
+            name="line2"
+            value={line2}
+            onChange={this.onChangeHandler}
+            placeholder="Address Line 2"
+          />
+
+          <input
+            type="text"
+            name="city"
+            value={city}
+            onChange={this.onChangeHandler}
+            placeholder="City"
+          />
+          <input
+            type="text"
+            name="state"
+            value={state}
+            onChange={this.onChangeHandler}
+            placeholder="State"
+          />
+          <input
+            type="text"
+            name="zip"
+            value={zip}
+            onChange={this.onChangeHandler}
+            placeholder="Zip Code"
+          />
+
+          <button>Next</button>
+
+        </form>
+      </div>
+    )
+  }
+}
+
+class BillingView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      cardNum: '',
+      expiration: '',
+      cvv: '',
+      zip: ''
+    }
+
+    this.onChangeHandler = this.onChangeHandler.bind(this);
+    this.onSubmitHandler = this.onSubmitHandler.bind(this);
+    this.resetState = this.resetState.bind(this);
+  }
+
+  onChangeHandler(event) {
+    let { name, value } = event.target;
+
+    this.setState({ [name]: value });
+  }
+
+  onSubmitHandler(event) {
+    let { toNext, submitData } = this.props;
+    let submitPath = '/order/shipping';
+
+    event.preventDefault();
+    submitData(this.state, submitPath);
+    this.resetState();
+    toNext();
+  }
+
+  resetState() {
+    this.setState({ 
+      cardNum: '',
+      expiration: '',
+      cvv: '',
+      zip: '' 
+    });
+  }
+
+  render() {
+    let { cardNum, expiration, cvv, zip } = this.state;
+
+    return (
+      <div>
+        <h3>Shipping Information</h3>
+        <form onSubmit={this.onSubmitHandler}>
+          <label>Address</label>
+          <input
+            type="text"
+            name="line1"
+            value={line1}
+            onChange={this.onChangeHandler}
+            placeholder="Address Line 1"
+          />
+          
+
+          <button>Next</button>
+
+        </form>
+      </div>
+    )
   }
 }
 
@@ -131,10 +281,10 @@ class App extends React.Component {
       )
     } else if (view === "shipping") {
       return (
-        <div>
-          <h1>Shipping Infortmation</h1>
-          <button onClick={this.toBillingView}>Next</button>
-        </div>
+        <ShippingView 
+        toNext={this.toBillingView} 
+        submitData={this.submitData} 
+        />
       )
     } else if (view === "billing") {
       return (
