@@ -1,0 +1,24 @@
+{
+  "name": "ghrsea11-multistep-checkout",
+  "version": "1.0.0",
+  "description": "Simple multistep checkout app",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/babel client --out-dir public --presets @babel/preset-react --source-maps inline --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AldosAC/ghrsea11-multistep-checkout.git"
+  },
+  "author": "Joel Carpenter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AldosAC/ghrsea11-multistep-checkout/issues"
+  },
+  "homepage": "https://github.com/AldosAC/ghrsea11-multistep-checkout#readme"
+}
