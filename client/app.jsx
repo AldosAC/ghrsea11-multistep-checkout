@@ -48,7 +48,7 @@ class SignUpView extends React.Component {
 
           <label>Email</label>
           <input 
-          type="text" 
+          type="email" 
           name="email"
           onChange={this.onChangeHandler} 
           value={email}
@@ -56,7 +56,7 @@ class SignUpView extends React.Component {
 
           <label>Password</label>
           <input 
-          type="text" 
+          type="password" 
           name="password"
           onChange={this.onChangeHandler} 
           value={password}
@@ -67,6 +67,16 @@ class SignUpView extends React.Component {
         </form>
       </div>
     );
+  }
+}
+
+class ShippingView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    }
+
   }
 }
 
