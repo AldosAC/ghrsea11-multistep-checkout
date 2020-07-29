@@ -9,6 +9,7 @@ class SignUpView extends React.Component {
 
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
+    this.resetState = this.resetState.bind(this);
   }
 
   onChangeHandler(event) {
@@ -17,44 +18,56 @@ class SignUpView extends React.Component {
   }
 
   onSubmitHandler(event) {
-    let { toNext } = this.props;
+    let { toNext, submitData } = this.props;
+    let submitPath = '/signup';
 
+    event.preventDefault();
+    submitData(this.state, submitPath);
+    this.resetState();
+    toNext();
+  }
+
+  resetState() {
+    this.setState({ name: '', email: '', password: '' });
   }
 
   render () {
     let { name, email, password } = this.state;
 
     return (
-    <form>
-      <label>Name</label>
-      <input 
-      type="text" 
-      name="name"
-      onChange={this.onChangeHandler} 
-      value={name}
-      />
+      <div>
+        <h3>Sign Up</h3>
+        <form onSubmit={this.onSubmitHandler}>
+          <label>Name</label>
+          <input 
+          type="text" 
+          name="name"
+          onChange={this.onChangeHandler} 
+          value={name}
+          />
 
-      <label>Email</label>
-      <input 
-      type="text" 
-      name="email"
-      onChange={this.onChangeHandler} 
-      value={email}
-      />
+          <label>Email</label>
+          <input 
+          type="text" 
+          name="email"
+          onChange={this.onChangeHandler} 
+          value={email}
+          />
 
-      <label>Password</label>
-      <input 
-      type="text" 
-      name="password"
-      onChange={this.onChangeHandler} 
-      value={password}
-      />
+          <label>Password</label>
+          <input 
+          type="text" 
+          name="password"
+          onChange={this.onChangeHandler} 
+          value={password}
+          />
 
+          <button>Next</button>
 
-    </form>
+        </form>
+      </div>
     );
   }
-
 }
 
 class App extends React.Component {
