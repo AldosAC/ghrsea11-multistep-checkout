@@ -17,6 +17,7 @@ class SignUpView extends React.Component {
   }
 
   onSubmitHandler(event) {
+    let { toNext } = this.props;
 
   }
 
@@ -25,7 +26,7 @@ class SignUpView extends React.Component {
 
     return (
     <form>
-      <label value="Name" />
+      <label>Name</label>
       <input 
       type="text" 
       name="name"
@@ -33,7 +34,7 @@ class SignUpView extends React.Component {
       value={name}
       />
 
-      <label value="Email" />
+      <label>Email</label>
       <input 
       type="text" 
       name="email"
@@ -41,7 +42,7 @@ class SignUpView extends React.Component {
       value={email}
       />
 
-      <label value="Email" />
+      <label>Password</label>
       <input 
       type="text" 
       name="password"
@@ -87,6 +88,10 @@ class App extends React.Component {
     this.setState({ view: "index" })
   }
 
+  submitData(data, path) {
+    console.log(`Submit ${JSON.stringify(data)} to ${path}`);
+  }
+
   renderView() {
     let { view } = this.state;
 
@@ -96,7 +101,10 @@ class App extends React.Component {
       )
     } else if (view === "sign-up") {
       return (
-        <SignUpView toNext={this.toShippingView} />
+        <SignUpView 
+        toNext={this.toShippingView} 
+        submitData={this.submitData} 
+        />
       )
     } else if (view === "shipping") {
       return (
