@@ -283,7 +283,7 @@ class App extends React.Component {
 
   submitData(data, path) {
     console.log(`Submit ${JSON.stringify(data)} to ${path}`);
-    axios.get(path, data);
+    axios.post(path, data);
   }
 
   renderView() {
