@@ -2,12 +2,11 @@
   "name": "ghrsea11-multistep-checkout",
   "version": "1.0.0",
   "description": "Simple multistep checkout app",
-  "main": "index.js",
+  "main": "public/index.html",
   "dependencies": {
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.10.5",
     "@babel/preset-react": "^7.10.4",
-    "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "chai": "^4.2.0",
     "express": "^4.17.1",
